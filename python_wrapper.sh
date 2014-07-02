@@ -8,4 +8,4 @@ module load all-pkgs
 
 ls -thor
 echo "Launching : python $*"
-#python $*
+python $*

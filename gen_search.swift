@@ -40,8 +40,8 @@ foreach f_split, index in splits
     (out[index], log[index], err[index]) = search(wrapper, pyscript, samples, labels, f_split, n,nsteps, kval, method, extra);
 }
 
-
 file final <"final.out">;
 file f_err <"final.err">;
 file postscript <"postprocess.sh">;
 (final, f_err) = sort (postscript, out);
+

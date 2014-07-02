@@ -11,7 +11,7 @@ SPLITNUM=100
 # This must be set as a directory/prefix
 OUTPUT_PREFIX=output/miRNA
 
-source python_wrapper.sh
+source python_wrapper.sh "-c exit(0)"
 
 which swift | grep "Swift 0.95 RC6"
 if [[ "$?" != "0" ]]
@@ -22,7 +22,7 @@ fi
 echo "Cleaning previous results"
 rm -rf $OUTPUT_PREFIX* &> /dev/null
 rm -rf results
-rm -rf tes
+rm -rf test
 
 python preprocess.py -i $SAMPLES -l $LABELS -n $N -s $STEPS -k $K -m $METHOD -x $SPLITNUM -f $OUTPUT_PREFIX
 
