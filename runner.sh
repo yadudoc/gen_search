@@ -1,6 +1,6 @@
 #!/bin/bash
 
-
+############# START OF CONFIGURABLES######################
 SAMPLES=data/miRNA_samples.csv
 LABELS=data/miRNA_labels.csv
 N=2
@@ -10,6 +10,8 @@ METHOD=2
 SPLITNUM=100
 # This must be set as a directory/prefix
 OUTPUT_PREFIX=output/miRNA
+############ END OF CONFIGURABLES ########################
+
 
 source python_wrapper.sh "-c exit(0)"
 
@@ -26,7 +28,8 @@ rm -rf test
 
 python preprocess.py -i $SAMPLES -l $LABELS -n $N -s $STEPS -k $K -m $METHOD -x $SPLITNUM -f $OUTPUT_PREFIX
 
-swift gen_search.swift -n=$N \
+swift gen_search.swift \
+    -n=$N \
     -nsteps=$STEPS \
     -kfold=$K \
     -method=$METHOD \
