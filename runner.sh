@@ -3,30 +3,46 @@
 ############# START OF CONFIGURABLES######################
 SAMPLES=data/miRNA_samples.csv
 LABELS=data/miRNA_labels.csv
+OUTPUT_PREFIX=splits/miRNA
+
+#SAMPLES=data/golub_samples.csv
+#LABELS=data/golub_labels.csv
+#OUTPUT_PREFIX=output/golub
+
 N=2
 STEPS=20
 K=5
 METHOD=2
-SPLITNUM=100
+SPLITNUM=1000
 # This must be set as a directory/prefix
-OUTPUT_PREFIX=output/miRNA
 ############ END OF CONFIGURABLES ########################
 
 
 source python_wrapper.sh "-c exit(0)"
 
-which swift | grep "Swift 0.95 RC6"
+swift -version | grep "Swift 0.95 RC6"
 if [[ "$?" != "0" ]]
 then
     echo "ERROR: Must run script with Swift 0.95 RC6 or higher"
 fi
 
 echo "Cleaning previous results"
-rm -rf $OUTPUT_PREFIX* &> /dev/null
+
 rm -rf results
 rm -rf test
 
-python preprocess.py -i $SAMPLES -l $LABELS -n $N -s $STEPS -k $K -m $METHOD -x $SPLITNUM -f $OUTPUT_PREFIX
+
+if [[ "$1" == "skip" ]]
+then
+    echo "Skipping preprocessing stage"
+else
+    rm -rf $OUTPUT_PREFIX* &> /dev/null
+    python preprocess.py -i $SAMPLES -l $LABELS -n $N -s $STEPS -k $K -m $METHOD -x $SPLITNUM -f $OUTPUT_PREFIX
+    if [[ "$?" != "0" ]]
+    then
+        echo "ERROR: Preprocessing failed. Stopping"
+    fi
+fi
 
 swift gen_search.swift \
     -n=$N \

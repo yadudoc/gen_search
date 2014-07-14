@@ -19,7 +19,7 @@ int method = toInt(arg("method",  "2"));
 file samples <single_file_mapper; file=arg("sample", "data/miRNA_samples.csv")>;
 file labels  <single_file_mapper; file=arg("labels", "data/miRNA_labels.csv" )>;
 
-string input_folder=arg("folder", "test");
+string input_folder=arg("folder", "splits");
 string input_prefix=arg("prefix", "miRNA");
 
 file splits[] <filesys_mapper; location=input_folder, prefix=input_prefix>;

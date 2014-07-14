@@ -20,11 +20,11 @@ from pandas import DataFrame, Series
 import numpy as np
 import itertools as it
 import math
-from matplotlib import pyplot as plt
 import sklearn
 from sklearn import cross_validation, metrics
 import classifier
 import pickle
+
 #Read in feature and label files
 def read_csv(csv_file):
     data = pd.read_csv(csv_file, sep=',', header=0, index_col=0)
