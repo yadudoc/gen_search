@@ -1,13 +1,17 @@
 #!/bin/bash
 
 ############# START OF CONFIGURABLES######################
-SAMPLES=data/miRNA_samples.csv
-LABELS=data/miRNA_labels.csv
-OUTPUT_PREFIX=splits/miRNA
+#SAMPLES=data/miRNA_samples.csv
+#LABELS=data/miRNA_labels.csv
+#OUTPUT_PREFIX=splits/miRNA
 
 #SAMPLES=data/golub_samples.csv
 #LABELS=data/golub_labels.csv
 #OUTPUT_PREFIX=output/golub
+
+SAMPLES=data/iris_samples.csv
+LABELS=data/iris_labels.csv
+OUTPUT_PREFIX=output/iris
 
 N=2
 STEPS=20
